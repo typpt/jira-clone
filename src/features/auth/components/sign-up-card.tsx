@@ -3,6 +3,7 @@
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { registerSchema, SignUp } from '../schema/register-schema';
+import { useRegister } from '../api/use-register';
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import {
@@ -30,8 +31,10 @@ export default function SignUpCard() {
     },
   });
 
+  const { mutate } = useRegister();
+
   function onSubmit(values: SignUp) {
-    console.log(values);
+    mutate({ form: values });
   }
 
   return (

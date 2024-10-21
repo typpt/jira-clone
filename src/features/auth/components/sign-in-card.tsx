@@ -3,6 +3,7 @@
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { loginSchema, SignIn } from '../schema/login-schema';
+import { useLogin } from '../api/use-login';
 
 import { FcGoogle } from 'react-icons/fc';
 
@@ -30,8 +31,10 @@ export default function SignInCard() {
     },
   });
 
+  const { mutate } = useLogin();
+
   function onSubmit(values: SignIn) {
-    console.log(values);
+    mutate({ form: values });
   }
 
   return (
